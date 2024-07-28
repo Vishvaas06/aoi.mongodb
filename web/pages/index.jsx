@@ -28,8 +28,8 @@ export default function Home() {
     <div className="container">
       <div className="banner"></div>
       <div className="button">
-        <button className='prm-button'>Add To Discord</button>
-        <button className='prm-button'>Browse Features</button>
+        <button className='prm-button' href='https://discord.com/oauth2/authorize?client_id=1251024513487863921'>Invite App</button>
+        <button className='prm-button' href='https://discord.gg/3JHqnphebk'>Support Server</button>
       </div>
       <div className='content'>
       </div>
