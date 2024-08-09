@@ -2,7 +2,7 @@
   "dependencies": {
     "mongoose": "^8.3.2"
   },
-  "name": "aoi.mongodb",
+  "name": "aoi.statsdb",
   "version": "1.2.2",
   "description": "aoi.mongodb - Allows storing of vars to mongoDB without conflicting with aoiDB!",
   "main": "index.js",

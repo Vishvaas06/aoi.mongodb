@@ -28,7 +28,7 @@ module.exports = {
             process.exit(1);
         } else {
             mongoose.connect(mongoURL)
-                .then(() => console.log("Successfully connected to Mongo DB! ~ aoi.mongoDB"))
+                .then(() => console.log("Successfully connected to Mongo DB! ~ aoi.statsDB"))
                 .catch((err) => {
                     console.error(`Mongo DB connection failed: ${err}`);
                     process.exit(1);
