@@ -2,7 +2,7 @@ const v = require('../index.js')?.getData()?.variables;
 const MessageVar = require('../schema/messageVar.js');
 
 module.exports = {
-  name: "$getMessageMVar",
+  name: "$getMessageSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);

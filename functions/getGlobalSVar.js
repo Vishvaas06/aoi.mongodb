@@ -1,29 +1,26 @@
 const v = require('../index.js')?.getData()?.variables;
-const GlobalUserVar = require('../schema/globalUserVar.js');
+const GlobalVar = require('../schema/globalVar.js');
 
 module.exports = {
-  name: "$getGlobalUserMVar",
+  name: "$getSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);
 
-    let [ varname, userId = d.author?.id ] = data.inside.splits;
+    let [ varname ] = data.inside.splits;
     let res;
 
     varname = varname?.trim();
-    userId = userId?.trim();
 
     if (v[varname] === undefined) return d.channel.send("Variable not initailized.");
 
     try {
-      const globalUserVariable = await GlobalUserVar.findOne({
-        userId: userId,
+      const globalVariable = await GlobalVar.findOne({
         variable: varname
       });
 
-      if (!globalUserVariable) {
-        const newAssign = await GlobalUserVar.findOneAndUpdate({
-          userId: userId,
+      if (!globalVariable) {
+        const newAssign = await GlobalVar.findOneAndUpdate({
           variable: varname      
         }, {
           $set: { value: v[varname] }
@@ -34,7 +31,7 @@ module.exports = {
         await newAssign.save();
         res = (typeof v[varname] === 'object' ? JSON.stringify(v[varname]) : v[varname]);
       } else {
-        res = (typeof globalUserVariable.value === 'object') ? JSON.stringify(globalUserVariable.value) : globalUserVariable.value; 
+        res = (typeof globalVariable.value === 'object') ? JSON.stringify(globalVariable.value) : globalVariable.value; 
       };
 
     } catch (err) {

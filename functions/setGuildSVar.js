@@ -1,19 +1,19 @@
 const v = require('../index.js')?.getData()?.variables;
-const ChannelVar = require('../schema/channelVar.js');
+const GuildVar = require('../schema/guildVar.js');
 const { convertType } = require('../func/convertType.js');
 
 module.exports = {
-  name: "$setChannelMVar",
+  name: "$setGuildSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);
 
-    let [ varname, value, channelId = d.channel?.id ] = data.inside.splits;
+    let [ varname, value, guildId = d.guild?.id ] = data.inside.splits;
     let res;
 
     varname = varname?.trim();
     value = value?.trim();
-    channelId = channelId?.trim();
+    guildId = guildId?.trim();
 
     // Converting the Data Type of Value depending on the input
     value = convertType(value);
@@ -21,8 +21,8 @@ module.exports = {
     if (v[varname] === undefined) return d.channel.send("Variable not initialized.");
 
     try {
-      const newAssign = await ChannelVar.findOneAndUpdate({
-        channelId: channelId,
+      const newAssign = await GuildVar.findOneAndUpdate({
+        guildId: guildId,
         variable: varname      
       }, {
         $set: { value: value }

@@ -3,7 +3,7 @@ const GlobalUserVar = require('../schema/globalUserVar.js');
 const { convertType } = require('../func/convertType.js');
 
 module.exports = {
-  name: "$setGlobalUserMVar",
+  name: "$setGlobalUserSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);

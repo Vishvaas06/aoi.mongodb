@@ -2,7 +2,7 @@ const v = require('../index.js')?.getData()?.variables;
 const GuildVar = require('../schema/guildVar.js');
 
 module.exports = {
-  name: "$getGuildMVar",
+  name: "$getGuildSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);

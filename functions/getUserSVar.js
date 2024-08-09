@@ -2,7 +2,7 @@ const v = require('../index.js')?.getData()?.variables;
 const UserVar = require('../schema/userVar.js');
 
 module.exports = {
-  name: "$getUserMVar",
+  name: "$getUserSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);

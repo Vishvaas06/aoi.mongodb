@@ -1,18 +1,19 @@
 const v = require('../index.js')?.getData()?.variables;
-const GlobalVar = require('../schema/globalVar.js');
+const ChannelVar = require('../schema/channelVar.js');
 const { convertType } = require('../func/convertType.js');
 
 module.exports = {
-  name: "$setMVar",
+  name: "$setChannelSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);
 
-    let [ varname, value ] = data.inside.splits;
+    let [ varname, value, channelId = d.channel?.id ] = data.inside.splits;
     let res;
 
     varname = varname?.trim();
     value = value?.trim();
+    channelId = channelId?.trim();
 
     // Converting the Data Type of Value depending on the input
     value = convertType(value);
@@ -20,7 +21,8 @@ module.exports = {
     if (v[varname] === undefined) return d.channel.send("Variable not initialized.");
 
     try {
-      const newAssign = await GlobalVar.findOneAndUpdate({
+      const newAssign = await ChannelVar.findOneAndUpdate({
+        channelId: channelId,
         variable: varname      
       }, {
         $set: { value: value }

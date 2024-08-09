@@ -2,7 +2,7 @@ const v = require('../index.js')?.getData()?.variables;
 const ChannelVar = require('../schema/channelVar.js');
 
 module.exports = {
-  name: "$getChannelMVar",
+  name: "$getChannelSVar",
   type: "djs",
   code: async d => {
     const data = d.util.aoiFunc(d);
