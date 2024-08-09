@@ -27,7 +27,7 @@ module.exports = {
             console.error("Mongo URL not given!");
             process.exit(1);
         } else {
-            mongoose.connect(mongoURL)
+            mongoose.createConnection(mongoURL)
                 .then(() => console.log("Successfully connected to Mongo DB! ~ aoi.statsDB"))
                 .catch((err) => {
                     console.error(`Mongo DB connection failed: ${err}`);
